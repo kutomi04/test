@@ -16,9 +16,9 @@ function App() {
           <img src={viteLogo} className="vite" alt="Vite logo" />
         </div>
         <div>
-         <h1>Hello React!</h1>
+          <h1>go started</h1>
           <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
+            Edit <code>src/App.tsx</code> and save to test <code>HMR</code>
           </p>
         </div>
         <button
@@ -119,21 +119,4 @@ function App() {
   )
 }
 
-// App.jsx
-function App() {
-  return (
-    <div style={{ padding: '20px', textAlign: 'center' }}>
-      {/* Tailwind標準の青 */}
-      <h1 className="text-5xl font-bold text-blue-600">
-        Tailwind 動作テスト
-      </h1>
-      
-      {/* CSS変数 (--accent) を使った紫 */}
-      <p className="text-(--accent) text-2xl mt-4">
-        この文字が「紫」なら成功です！
-      </p>
-    </div>
-  );
-}
-
-export default App;
+export default App
