@@ -11,21 +11,16 @@ CREATE table customers(
 CREATE table stocks(
     stock_id  int PRIMARY KEY  AUTO_INCREMENT,
     stock_name varchar(100) NOT NULL,
-    stock_price int,
-    stock_stock int(255)
-);
-//営業のデータ
-CREATE table sales(
-    sale_id int PRIMARY KEY  AUTO_INCREMENT,
-    sale_name varchar(100) NOT NULL
+    stock_count int DEFAULT 0
 );
 
+
 //出荷履歴のデータ
-CREATE table  shipping(
+CREATE table  shippings(
     shipping_id int PRIMARY KEY  AUTO_INCREMENT,
     stock_id int NOT NULL,
     customer_id int NOT NULL,
-    shipping_count int NOT NULL,
+    shipping_count int NOT NULL DEFAULT 0,
     shipping_date DATE NOT NULL,
     --  CONSTRAINTで参照整合性を保持する
     CONSTRAINT fk_customer FOREIGN KEY (customer_id) REFERENCES customers(customer_id),
