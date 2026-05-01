@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>保育園顧客登録フォーム</title>
+    <!-- Tailwind CSS をCDNで読み込み（スタイリング用） -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="newcustomer.css">
+</head>
+<body>
+
+    <div class="flex_test-box">
+        <div class="min-h-screen bg-gray-50 py-8 px-4 w-full">
+            <div class="max-w-4xl mx-auto bg-white rounded-lg shadow-md p-8">
+                <div class="mb-8">
+                    <h1 class="title">保育園顧客登録フォーム</h1>
+                    <p class="text-gray-600">新規取引先となる保育園の情報を登録してください</p>
+                </div>
+
+                <form id="nurseryForm" class="space-y-8">
+                    <!-- 施設基本情報 -->
+                    <section>
+                        <h2 class="pb-2 mb-4 border-b-2 border-blue-500 font-semibold text-lg">施設基本情報</h2>
+                        <div class="space-y-4">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-sm mb-1">
+                                        施設名 <span class="text-red-500">*</span>
+                                    </label>
+                                    <input
+                                        type="text"
+                                        name="nurseryName"
+                                        required
+                                        class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                        placeholder="さくら保育園"
+                                    >
+                                </div>
+                                <div>
+                                    <label class="block text-sm mb-1">
+                                        ふりがな <span class="text-red-500">*</span>
+                                    </label>
+                                    <input
+                                        type="text"
+                                        name="nurseryKana"
+                                        required
+                                        class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                        placeholder="さくらほいくえん"
+                                    >
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-sm mb-1">
+                                    園長氏名 <span class="text-red-500">*</span>
+                                </label>
+                                <input
+                                    type="text"
+                                    name="directorName"
+                                    required
+                                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                    placeholder="山田 太郎"
+                                >
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- 所在地情報 -->
+                    <section>
+                        <h2 class="pb-2 mb-4 border-b-2 border-blue-500 font-semibold text-lg">所在地情報</h2>
+                        <div class="space-y-4">
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                <div>
+                                    <label class="block text-sm mb-1">
+                                        郵便番号 <span class="text-red-500">*</span>
+                                    </label>
+                                    <input
+                                        type="text"
+                                        name="postalCode"
+                                        required
+                                        class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                        placeholder="123-4567"
+                                    >
+                                </div>
+                                <div>
+                                    <label class="block text-sm mb-1">
+                                        都道府県 <span class="text-red-500">*</span>
+                                    </label>
+                                    <select
+                                        name="prefecture"
+                                        required
+                                        class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                    >
+                                        <option value="">選択</option>
+                                        <option value="北海道">北海道</option>
+                                        <option value="東京都">東京都</option>
+                                        <option value="神奈川県">神奈川県</option>
+                                        <option value="大阪府">大阪府</option>
+                                        <option value="福岡県">福岡県</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-sm mb-1">
+                                        市区町村 <span class="text-red-500">*</span>
+                                    </label>
+                                    <input
+                                        type="text"
+                                        name="city"
+                                        required
+                                        class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                        placeholder="渋谷区"
+                                    >
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="block text-sm mb-1">
+                                    番地・建物名 <span class="text-red-500">*</span>
+                                </label>
+                                <input
+                                    type="text"
+                                    name="address"
+                                    required
+                                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                    placeholder="〇〇1-2-3 〇〇ビル2F"
+                                >
+                            </div>
+
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-sm mb-1">
+                                        電話番号 <span class="text-red-500">*</span>
+                                    </label>
+                                    <input
+                                        type="tel"
+                                        name="phone"
+                                        required
+                                        class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                        placeholder="03-1234-5678"
+                                    >
+                                </div>
+                                <div>
+                                    <label class="block text-sm mb-1">
+                                        メールアドレス <span class="text-red-500">*</span>
+                                    </label>
+                                    <input
+                                        type="email"
+                                        name="email"
+                                        required
+                                        class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                        placeholder="info@example.com"
+                                    >
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <div class="pt-6 border-t">
+                        <button
+                            type="submit"
+                            class="w-full bg-blue-600 text-white py-3 px-6 rounded-md hover:bg-blue-700 transition-colors shadow-md font-bold"
+                        >
+                            保育園を登録する
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // フォーム送信時の処理
+        document.getElementById('nurseryForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // フォームデータの取得
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData.entries());
+
+            console.log('保育園登録データ:', data);
+            alert('保育園の登録が完了しました');
+        });
+    </script>
+</body>
+</html>

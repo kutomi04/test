@@ -4,9 +4,12 @@ CREATE table customers(
     customer_name varchar(100) NOT NULL,
     customer_email varchar(255),
     customer_phone varchar(100),
-    customer_address varchar(255)
-
+    customer_address varchar(255),
+    customer_prefecture varchar(10),
+    customer_city varchar(50),
+    customer_adress_build varchar(200)
 );
+
 //在庫のデータ
 CREATE table stocks(
     stock_id  int PRIMARY KEY  AUTO_INCREMENT,

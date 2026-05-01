@@ -1,0 +1,17 @@
+.flex_test-box {
+    background-color: #eee;     /* 背景色指定 */
+    padding:  10px;             /* 余白指定 */
+    display: flex;              /* フレックスボックスにする */
+    align-items:stretch;        /* 縦の位置指定 */
+}
+
+/*フォームが中央に寄るように調整 */
+.flex_test-box > div {
+    flex: 1;
+}
+
+.title{
+    color: blue;
+    font-size: 50px;
+    text-align: center;
+}
