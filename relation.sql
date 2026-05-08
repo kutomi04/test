@@ -9,21 +9,21 @@ CREATE table customers(
     customer_adress_build varchar(200)          --保育園番地・建物
 );
 
-//在庫テーブル
-CREATE table stocks(
-    stock_id varchar(30) PRIMARY KEY,           --在庫NO
-    stock_name varchar(100) NOT NULL,           --在庫商品名
-    stock_category varchar(20) NOT NULL,        --在庫カテゴリー
-    stock_count int DEFAULT 0 NOT NULL,         --在庫数
-    stock_low int NOT NULL,                     --最低在庫数
-    stock_statute varchar(30) NOT NULL          --在庫状態
+//製品テーブル
+CREATE table products(
+    product_id varchar(30) PRIMARY KEY,           --在庫NO
+    product_name varchar(100) NOT NULL,           --在庫商品名
+    product_count int DEFAULT 0 NOT NULL,         --在庫数
+    product_low int NOT NULL,                     --最低在庫数
+    product_statute varchar(30) NOT NULL          --在庫状態
+    is_deleted BOOLEAN DEFAULT FALSE,
 );
 
 //出荷予定/履歴テーブル
 CREATE table shippings(
     shipping_id int PRIMARY KEY AUTO_INCREMENT, -- 出荷管理番号
-    stock_id varchar(30) NOT NULL,              -- 在庫NO
-    customer_id int NOT NULL,                   -- 保育園NO
+    product_id varchar(30) NOT NULL,              -- 在庫NO　　参照
+    customer_id int NOT NULL,                   -- 保育園NO 参照
     shipping_count int NOT NULL DEFAULT 0,      --　個数
     shippings_scheduled_date DATE NOT NULL,     -- 出荷予定日
     shipping_actual_date DATE,                  -- 実際の出荷完了日（NULLなら未出荷）
@@ -33,12 +33,16 @@ CREATE table shippings(
     ALTER table shippings ADD COLUMN is_deleted BOOLEAN DEFAULT false;
     
     CONSTRAINT fk_customer FOREIGN KEY (customer_id) REFERENCES customers(customer_id),
-    CONSTRAINT fk_stock FOREIGN KEY (stock_id) REFERENCES stocks(stock_id)
+    CONSTRAINT fk_product FOREIGN KEY (product_id) REFERENCES products(product_id)
 );
 
-//出荷予定/履歴 追加
+//カテゴリーID
+CREATE table category(
+
+);
+//出荷予定 追加
 INSERT INTO shippings (
-    stock_id, 
+    product_id, 
     customer_id, 
     shipping_count, 
     shippings_scheduled_date, 
@@ -52,12 +56,7 @@ INSERT INTO shippings (
     0, --　出荷予定としてデフォルト登録
 );
 
-//出荷予定削除(論理削除)
-UPDATE shippings
-SET 
-  shipping_status = 1,                 -- 完了ステータス
-  shipping_actual_date = CURRENT_DATE  -- 今日の日付を入れる
-WHERE shipping_id = ? AND is_deleted = false; --true出荷履歴のデータ(出荷済),false出荷予定のデータ(未出荷)
+
 
 //ユーザー
 CREATE TABLE users(
@@ -66,7 +65,7 @@ CREATE TABLE users(
 );
 -----テスト
 -- 在庫の挿入
-INSERT INTO stocks (stock_id, stock_name, stock_category, stock_count, stock_low, stock_statute)
+INSERT INTO products (product_id, product_name, product_category, product_count, product_low, product_statute)
 VALUES ('Z1', 'おしりふきS', 'おしりふき', 100, 10, '在庫あり');
 
 -- ユーザーの挿入 (user_mail を主キーに合わせる)
