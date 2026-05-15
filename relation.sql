@@ -1,34 +1,40 @@
 //保育園テーブル
 CREATE table customers(
-    customer_id int PRIMARY KEY  AUTO_INCREMENT,--保育園ID
+    customer_id varchar(100) PRIMARY KEY ,      --保育園ID
     customer_name varchar(100) NOT NULL,        --保育園名
-    customer_email varchar(255),                --保育園アドレス
-    customer_phone varchar(100),                --保育園電話
+    cusotmer_post varchar(100) NOT NULL,        --郵便番号
     customer_prefecture varchar(10),            --保育園県名
     customer_city varchar(50),                  --保育園市区町村
-    customer_adress_build varchar(200)          --保育園番地・建物
-);
+    customer_build varchar(255),                --保育園建物
+    customer_phone number,                --保育園電話
+    customer_capacity int,                      --定員
+    customer_agerange varchar(30)              --対象年齢        
+);   
 
 //製品テーブル
 CREATE table products(
-    product_id varchar(30) PRIMARY KEY,           --在庫NO
-    product_name varchar(100) NOT NULL,           --在庫商品名
+    product_id varchar(30) PRIMARY KEY,           --商品NO
+    product_name varchar(100) NOT NULL,           --商品名
     product_count int DEFAULT 0 NOT NULL,         --在庫数
     product_low int NOT NULL,                     --最低在庫数
+    category    string NOT NULL,                  --カテゴリー
     product_statute varchar(30) NOT NULL          --在庫状態
-    is_deleted BOOLEAN DEFAULT FALSE,
+    is_deleted BOOLEAN DEFAULT FALSE,             --削除
 );
 
 //出荷予定/履歴テーブル
 CREATE table shippings(
-    shipping_id int PRIMARY KEY AUTO_INCREMENT, -- 出荷管理番号
-    product_id varchar(30) NOT NULL,              -- 在庫NO　　参照
+    shipping_id varchar(100) PRIMARY KEY ,      -- 出荷管理番号
+    shipping_date date,                         --出荷日
+    product_id varchar(30) NOT NULL,            -- 商品NO　PK　　参照
+    product_name varchar(100),                  --商品名　参照
     customer_id int NOT NULL,                   -- 保育園NO 参照
-    shipping_count int NOT NULL DEFAULT 0,      --　個数
+    shipping_count int NOT NULL DEFAULT 0,      --出荷数
+    category      string NOT NULL,              --カテゴリー
     shippings_scheduled_date DATE NOT NULL,     -- 出荷予定日
     shipping_actual_date DATE,                  -- 実際の出荷完了日（NULLなら未出荷）
     shipping_status int NOT NULL DEFAULT 0,     -- 0:予定, 1:完了, 9:キャンセル
-    
+);
     -- shippingsテーブルに削除フラグを追加
     ALTER table shippings ADD COLUMN is_deleted BOOLEAN DEFAULT false;
     

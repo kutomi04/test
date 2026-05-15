@@ -1,0 +1,124 @@
+react起動
+git bash
+<カレントディレクトリに移動>
+cd ../../
+
+ cd "C:\Users\Aswell-C108\Desktop\project\backend"
+<サーバー起動>
+ php artisan serve
+<ララベル起動 webブラウザで起動>
+http://127.0.0.1:8000
+
+サーバーを起動おくためgit bashはこのままにする
+
+SQlite起動
+git bash
+<カレントディレクトリに移動>
+cd ../../
+
+ cd "C:\Users\Aswell-C108\Desktop\project\backend"
+<実体が生きているか確認>
+cat .env | grep DB_
+
+<データベースファイルの存在確認>
+ls database/database.sqlite
+
+<テーブルが正しく作られているか>
+php artisan migrate:status
+
+<設計図(マイグレーション作成)>
+php artisan make:migration create_customers_table
+
+--------------------------------------------------------------------------------------------------------------------------
+laravelについて　
+マイグレーション
+1.  $table->id();()に指定しる必要がない
+Laravelには「設定より規約（Convention over Configuration）」という考え方があります。
+
+規約: 「主キーの名前は id にしましょう」というルールが最初から決まっている。
+
+LaravelのBlueprint（$table->string(...) など）は、デフォルトで NOT NULL 制約が付与される仕様になっています。そのため、あえて「Not Null」と明記する必要はありません。
+
+1. なぜ書かなくていいのか？
+Laravelでは「空を許可する場合のみメソッドを繋げる」というルールになっています。
+
+
+
+
+
+
+
+
+
+
+
+
+
+----------------------------------------------------------------------------------------------------------------------------
+<初期設定>laravel SQLite
+
+1. データベースの接続設定
+まず、Laravelがどのデータベースに接続するかを .env ファイルに記述します。
+マイグレーション（Migration）:データベースのバージョン管理システム
+.env ファイル（Environmentの略）:「システムを動かすための環境設定（秘密のメモ）」を保存しておくためのファイルです。
+
+・①//現在の .env の 33行目付近にある DB_CONNECTION=sqlite を mysql に変更し、設計情報に合わせます。
+
+・②MySQLで CREATE DATABASE nursery_system; を実行する
+　　→これから作るシステム専用の、データを入れるための『空の箱（データベース）』を新しく作るという意味
+Laravelはテーブル（箱の中の仕切り）は作ってくれますが、その親玉である「データベース（箱自体）」は、あらかじめ手動で作っておく必要があります。
+具体的な実行手順（コマンドの意味）
+ターミナル（git bash）で実行
+  SQLiteで実行
+②ー1バックエンドのセットアップ（ターミナルで実行）
+カレントディレクトリを変える
+<カレントディレクトリ移動>
+cd ../../
+
+cd "C:\Users\Aswell-C108\Desktop\project\backend"
+
+# プロジェクトフォルダ作成
+mkdir nursery-project
+cd nursery-project
+
+# Laravelプロジェクト（backendフォルダ）作成
+composer create-project laravel/laravel backend
+cd backend
+
+# 設定ファイルの準備
+cp .env.example .env
+php artisan key:generate
+
+②ー２ SQLiteの設定（重要）
+2. SQLiteの設定（重要）
+
+データベースファイルの作成
+
+Bash
+touch database/database.sqlite
+
+テーブルの初期構築（マイグレーション）
+
+Bash
+php artisan migrate
+
+これが終わるとどうなる？
+Laravelが「SQLite」というデータベースファイルを読み書きできるようになります。
+
+ユーザー管理やパスワードリセット用などの、システムが動くために最低限必要なテーブル（表）が作成されます。
+
+php artisan serve ※この後エンターを押さない。サーバーが止まるため
+
+<ララベル起動 webブラウザで起動>
+http://127.0.0.1:8000
+
+起動したらOK　ファイルを作る
+設計図を作る----------------------------------------------------------------------------
+
+php artisan make_migration create_customers_table
+
+
+
+
+
+
